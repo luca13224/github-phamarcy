@@ -1,6 +1,6 @@
 
-- Bảng nhân viên (tạo view, controller): tích hợp view, trigger, function, proc
-- Bảng nhà cung cấp (tạo view, controller): tích hợp view, trigger, function, proc
+- Bảng nhân viên (tạo view, controller(thêm,sửa,xóa)): tích hợp view, trigger, function, proc
+- Bảng nhà cung cấp (tạo view, controller(thêm,sửa,xóa)): tích hợp view, trigger, function, proc
 - Bảng thuốc: tích hợp view, trigger, function, proc
 - Bảng hóa đơn (tạo view, controller): show chi tiết hóa đơn, ?Tích điểm :))))
 - Báo cáo thống kê: Doanh thu,....(mng viết thêm nhé)
