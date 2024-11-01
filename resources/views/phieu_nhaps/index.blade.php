@@ -21,9 +21,9 @@
                 </div>
             @endif
 
-            <form method="GET" action="{{ route('khach-hangs.index') }}">
-                <div class="input-group mb-3">
-                    <input type="text" name="query" value="{{ request('query') }}" class="form-control" placeholder="Tìm kiếm thuốc...">
+            <form method="GET" action="{{ route('phieu-nhaps.index') }}">
+            <div class="input-group">
+                    <input type="text" name="query" value="{{ request('query') }}" class="form-control" placeholder="Tìm kiếm khách hàng...">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">Tìm kiếm</button>
                     </div>
