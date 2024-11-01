@@ -52,12 +52,14 @@
                         <td>{{ $khachhang->ngay_sinh }}</td>
                         <td>{{ $khachhang->diem_tich }}</td>
                         <td>
-                        <a href="{{ route('khach-hangs.edit', $khachhang->ma_KH) }}" class="btn btn-warning"><i class="fa fa-pencil-alt"></i></a>
+                        <div class="btn-group" role="group" aria-label="User Actions">
+                        <a href="{{ route('khach-hangs.edit', $khachhang->ma_KH) }}" class="btn btn-outline-warning btn-custom-size"> <i class="bi bi-pencil pencil-icon"></i></a>
                         <form action="{{ route('khach-hangs.destroy', $khachhang->ma_KH) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                <button class="btn btn-outline-danger btn-custom-size"><i class="bi bi-trash trash-icon"></i></button>
                             </form>
+                        </div>
                         </td>
                     </tr>
                     @endforeach
