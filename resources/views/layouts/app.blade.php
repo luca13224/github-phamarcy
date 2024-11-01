@@ -12,7 +12,7 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
@@ -70,7 +70,7 @@ body {
 }
 table.table tr th, table.table tr td {
 	border-color: #e9e9e9;
-	padding: 12px 15px;
+	padding: 15px 17px;
 	vertical-align: middle;
 }
 table.table tr th:first-child {
@@ -148,12 +148,12 @@ table.table .avatar {
 	color: #ccc;
 }
 .pagination li i {
-	font-size: 16px;
-	padding-top: 6px
+	font-size: 10px;
+	padding-top: 5px
 }
 .hint-text {
 	float: left;
-	margin-top: 10px;
+	margin-top: 5px;
 	font-size: 13px;
 }    
 /* Custom checkbox */
@@ -241,22 +241,60 @@ table.table .avatar {
 	font-weight: normal;
 }	
 .btn-custom-size {
-    padding: 1px 3px; /* Điều chỉnh kích thước padding để thay đổi kích thước */
-    font-size: 12px;   /* Điều chỉnh kích cỡ font chữ */
-	border-radius: 0px;
+    padding: 0.25px 0.5px; /* Điều chỉnh kích thước padding để giảm kích thước */
+    font-size: 2px;   /* Điều chỉnh kích cỡ font chữ */
+}
+.dropdown-menu {
+    padding: 0.5rem; /* Reduce padding for the dropdown */
+	min-width: 100px;
+}
+
+.dropdown-item {
+    padding: 0.25rem 1rem; /* Adjust padding for the items */
+    font-size: 12px; /* Reduce font size */
 }
 </style>
 </head>
 <style>
-        .container {
-            text-align: center; /* Căn giữa nội dung */
+        body {
+            color: #667a72;
+            background: #f5f5f5;
+            font-family: 'Varela Round', sans-serif;
+            font-size: 13px;
         }
-        .responsive-img {
-            width: 100%; /* Đặt chiều rộng ảnh bằng 100% chiều rộng màn hình */
-            height: auto; /* Đảm bảo tỷ lệ khung hình không bị biến dạng */
+        .table-responsive {
+            margin: 5px 0;
         }
-</style>
-<body>
+        .table-wrapper {
+            background: #fff;
+            padding: 20px 25px;
+            border-radius: 3px;
+            min-width: 1000px;
+            box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        }
+        .table-title {        
+            padding-bottom: 15px;
+            background: #667a72;
+            color: #fff;
+            padding: 16px 30px;
+            min-width: 100%;
+            margin: -20px -25px 10px;
+            border-radius: 3px 3px 0 0;
+        }
+        .table-title h2 {
+            margin: 5px 0 0;
+            font-size: 24px;
+        }
+		.dropdown-menu {
+        padding: 0.5rem; /* Reduce padding for the dropdown */
+		min-width: 100px;
+    	}
+    	.dropdown-item {
+        padding: 0.25rem 1rem; /* Adjust padding for the items */
+        font-size: 12px; /* Reduce font size */
+    	}
+    </style>
+	<body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Pharmacy</a>
         <ul class="navbar-nav ml-auto">
