@@ -57,7 +57,7 @@
                                 <form action="{{ route('phieu-nhaps.destroy', $phieuNhap->ma_PN) }}" method="POST" style="display:inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-outline-danger btn-custom-size"><i class="bi bi-trash trash-icon"></i></button>
                                 </form>
                             </td>
                         </tr>
