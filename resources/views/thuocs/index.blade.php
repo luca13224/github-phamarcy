@@ -20,20 +20,18 @@
                 </div>
             @endif
 
-            <!-- Thanh công cụ tìm kiếm -->
-            <form action="{{ route('thuoc.index') }}" method="GET" class="mb-4">
-                <div class="input-group">
-                    <input type="text" name="query" value="{{ request('query') }}" class="form-control" placeholder="Tìm kiếm thuốc...">
+            <form method="GET" action="{{ route('thuoc.index') }}">
+            <div class="input-group">
+                    <input type="text" name="query" value="{{ request('query') }}" class="form-control" placeholder="Tìm kiếm khách hàng...">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">Tìm kiếm</button>
                     </div>
                 </div>
             </form>
-
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Mã Thuốc</th>
+                        <th>Mã</th>
                         <th>Tên Thuốc</th>
                         <th>Thương Hiệu</th>
                         <th>Liều Lượng</th>
@@ -56,7 +54,7 @@
                         <td>{{ number_format($thuoc->gia_ban, 2) }} đ</td>
                         <td>{{ \Carbon\Carbon::parse($thuoc->HSD)->format('d/m/Y') }}</td>
                         <td>
-                           <div class="btn-group" role="group" aria-label="User Actions">
+                        <div class="btn-group" role="group" aria-label="User Actions">
                             <a href="{{ route('thuoc.edit', $thuoc->ma_thuoc) }}" class="btn btn-outline-warning btn-custom-size"> <i class="bi bi-pencil pencil-icon"></i></a>
                             <form action="{{ route('thuoc.destroy', $thuoc->ma_thuoc) }}" method="POST" style="display:inline-block;">
                                 @csrf
