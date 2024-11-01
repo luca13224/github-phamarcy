@@ -56,12 +56,14 @@
                         <td>{{ number_format($thuoc->gia_ban, 2) }} đ</td>
                         <td>{{ \Carbon\Carbon::parse($thuoc->HSD)->format('d/m/Y') }}</td>
                         <td>
-                            <a href="{{ route('thuoc.edit', $thuoc->ma_thuoc) }}" class="btn btn-warning"><i class="fa fa-pencil-alt"></i></a>
+                           <div class="btn-group" role="group" aria-label="User Actions">
+                            <a href="{{ route('thuoc.edit', $thuoc->ma_thuoc) }}" class="btn btn-outline-warning btn-custom-size"> <i class="bi bi-pencil pencil-icon"></i></a>
                             <form action="{{ route('thuoc.destroy', $thuoc->ma_thuoc) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                <button class="btn btn-outline-danger btn-custom-size"><i class="bi bi-trash trash-icon"></i></button>
                             </form>
+                        </div>
                         </td>
                     </tr>
                     @endforeach
