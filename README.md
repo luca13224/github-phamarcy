@@ -1,1 +1,1 @@
-# github-phamarcy
+# github-pharmacy
