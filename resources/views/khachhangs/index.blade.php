@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </form>
-            <table class="table">
+            <table class="table table-bordered text-center">
                 <thead>
                     <tr>
                         <th>Mã</th>
@@ -59,7 +59,7 @@
                                 @method('DELETE')
                                 <button class="btn btn-outline-danger btn-custom-size"><i class="bi bi-trash trash-icon"></i></button>
                             </form>
-                        </div>
+                            </div>
                         </td>
                     </tr>
                     @endforeach

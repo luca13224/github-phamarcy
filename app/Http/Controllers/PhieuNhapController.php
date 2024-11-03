@@ -24,7 +24,13 @@ class PhieuNhapController
     }
     return view('phieu_nhaps.index', compact('phieuNhaps'));
 }
-
+public function showDetails($ma_PN)
+{
+    $chiTietNhapHang = ChiTietNhapHang::with('thuoc', 'thuoc.nhaCungCap')
+        ->where('ma_PN', $ma_PN)
+        ->get();
+    return view('phieu_nhaps.details', compact('chiTietNhapHang'));
+}
 
     /**
      * Show the form for creating a new resource.
@@ -41,69 +47,49 @@ class PhieuNhapController
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'ngay_dat' => 'required|date',
-            'ngay_nhan' => 'required|date',
-            'ma_ncc' => 'required|exists:nha_cung_cap,ma_NCC', // Kiểm tra mã nhà cung cấp
-            'thuoc' => 'required|array', // Mảng thuốc
-            'thuoc.*.ma_thuoc' => 'required|exists:thuoc,ma_thuoc', // Mã thuốc
-            'thuoc.*.so_luong' => 'required|integer|min:1', // Số lượng
-        ]);
+{
+    // Validate yêu cầu
+    $request->validate([
+        'ngay_dat' => 'required|date',
+        'ngay_nhan' => 'required|date',
+        'thuoc' => 'required|array',
+        'thuoc.*.ma_thuoc' => 'required|exists:thuoc,ma_thuoc',
+        'thuoc.*.so_luong' => 'required|integer|min:1',
+    ]);
 
-        // Tạo phiếu nhập mới
-        $phieuNhap = new PhieuNhap();
-        $phieuNhap->ngay_dat = $request->ngay_dat;
-        $phieuNhap->ngay_nhan = $request->ngay_nhan;
-        $phieuNhap->ma_ncc = $request->ma_ncc; // Thêm mã nhà cung cấp
-        $phieuNhap->save();
-
-        // Lưu chi tiết nhập hàng
-        foreach ($request->thuoc as $item) {
-            ChiTietNhapHang::create([
-                'ma_PN' => $phieuNhap->ma_PN, // Mã phiếu nhập
-                'ma_thuoc' => $item['ma_thuoc'], // Mã thuốc
-                'so_luong_nhap' => $item['so_luong'], // Số lượng nhập
-            ]);
-        }
-
-        return redirect()->route('phieu-nhaps.index')->with('success', 'Phiếu nhập đã được thêm thành công.');
-
+    // Tạo phiếu nhập mới
+    $phieuNhap = PhieuNhap::create($request->only(['ngay_dat', 'ngay_nhan']));
+    
+    // Kiểm tra phiếu nhập đã được tạo thành công chưa
+    if (!$phieuNhap) {
+        return redirect()->back()->withErrors('Không thể tạo phiếu nhập.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function showDetails($ma_PN)
-{
-    $chiTietNhapHang = ChiTietNhapHang::with('thuoc', 'thuoc.nhaCungCap')
-        ->where('ma_PN', $ma_PN)
-        ->get();
-    return view('phieu_nhaps.details', compact('chiTietNhapHang'));
+    // Lưu chi tiết nhập hàng
+    foreach ($request->thuoc as $item) {
+        ChiTietNhapHang::create([
+            'ma_PN' => $phieuNhap->ma_PN, // Gán giá trị ma_PN ở đây
+            'ma_thuoc' => $item['ma_thuoc'],
+            'so_luong_nhap' => $item['so_luong'],
+        ]);    
+        // Cập nhật tồn kho
+        $thuoc = Thuoc::find($item['ma_thuoc']);
+        if ($thuoc) {
+            $thuoc->so_luong_ton += $item['so_luong']; // Cập nhật số lượng tồn
+            $thuoc->save(); // Lưu thay đổi
+        }
+    }
+
+    return redirect()->route('phieu-nhaps.index')->with('success', 'Phiếu nhập đã được thêm thành công.');
 }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        }
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-    }
+public function destroy(string $id)
+{
+    $phieunhap = PhieuNhap::where('ma_PN', $id)->firstOrFail();
+    ChiTietNhapHang::where('ma_PN', $id)->delete();
+    $phieunhap->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        $phieunhap = PhieuNhap::where('ma_PN', $id)->firstOrFail();
-        $phieunhap->delete();
+    return redirect()->route('phieu-nhaps.index')->with('success', 'Phiếu nhập đã được xóa thành công!');
+}
 
-        return redirect()->route('phieu_nhaps.index')->with('success', 'Phiếu nhập đã được xóa thành công!');
-
-    }
 }

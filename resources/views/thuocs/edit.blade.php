@@ -7,7 +7,7 @@
 <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-sm">
-                <h3 class="text-center text-uppercase fw-bold" style="color: black;">Cập nhật thuốc</h3>
+                <h3 class="text-center text-uppercase fw-bold" style="color: #363636;"><strong>Cập nhật thuốc</strong></h3>
                 <form action="{{ route('thuoc.update', $thuoc->ma_thuoc) }}" method="POST">
                     @csrf
                     @method('PUT')

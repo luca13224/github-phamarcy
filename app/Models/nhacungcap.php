@@ -16,6 +16,6 @@ class nhacungcap extends Model
     protected $fillable = ['ma_NCC','ten_NCC','SDT','dia_chi'];
     public function thuoc()
     {
-        return $this->belongsToMany(thuoc::class, 'NCC_Thuoc', 'ma_NCC', 'ma_thuoc');
+        return $this->belongsToMany(Thuoc::class, 'ncc_thuoc', 'ma_ncc', 'ma_thuoc');
     }
 }

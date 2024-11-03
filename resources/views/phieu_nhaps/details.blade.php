@@ -11,7 +11,7 @@
 					</div>
 				</div>
 			</div>
-    <table class="table">
+    <table class="table table-bordered text-center">
         <thead>
             <tr>
                 <th>Tên NCC</th>

@@ -13,6 +13,7 @@ class ThuocController
     public function index(Request $request)
 {
     $query = $request->input('query');
+    $thuocsQuery = thuoc::with('nhacungcap');
 
     if ($query) {
         $thuocs = thuoc::where('ten_thuoc', 'LIKE', "%{$query}%")

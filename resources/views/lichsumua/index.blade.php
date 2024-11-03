@@ -10,24 +10,24 @@
                         <h2><b>Lịch Sử Mua Hàng</b></h2>
                     </div>
                     <div class="col-sm-6 text-right">
-                    <a href="{{ route('khach-hangs.index') }}" class="btn btn-secondary ms-2"><span>Trở lại</span></a>
-                </div>
+                        <a href="{{ route('khach-hangs.index') }}" class="btn btn-secondary ms-2"><span>Trở lại</span></a>
+                    </div>
                 </div>
             </div>
-            <form method="GET" action="{{ route('lich-su-mua.index') }}">
+            <form method="GET" action="{{ route('lich-su-mua.index') }}" class="mb-3">
                 <div class="input-group">
-                <input type="text" name="ten_khach_hang" placeholder="Tìm kiếm tên khách hàng" value="{{ request('ten_khach_hang') }}" required>
-                    <input type="date" name="start_date" value="{{ request('start_date') }}">
-                    <input type="date" name="end_date" value="{{ request('end_date') }}">
+                    <input type="text" name="ten_khach_hang" placeholder="Tìm kiếm tên khách hàng" value="{{ request('ten_khach_hang') }}" class="form-control" required>
+                    <input type="date" name="start_date" value="{{ request('start_date') }}" class="form-control">
+                    <input type="date" name="end_date" value="{{ request('end_date') }}" class="form-control">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">Tìm kiếm</button>
                     </div>
                 </div>
             </form>
-            <table class="table">
+            <table class="table table-bordered text-center">
                 <thead>
                     <tr>
-                        <th>Mã KH</th>
+                        <th>Mã</th>
                         <th>Tên KH</th>
                         <th>Số Đơn Hàng</th>
                         <th>Tổng Chi Tiêu</th>

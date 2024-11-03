@@ -15,7 +15,7 @@ class thuoc extends Model
     protected $fillable = ['ma_thuoc','ten_thuoc','thuong_hieu','lieu_luong','so_luong_ton','gia_nhap','gia_ban','HSD'];
     public function nhacungcap()
     {
-        return $this->belongsToMany(NhaCungCap::class, 'NCC_Thuoc', 'ma_thuoc', 'ma_NCC');
+        return $this->belongsToMany(NhaCungCap::class, 'ncc_thuoc', 'ma_thuoc', 'ma_ncc');
     }
 
     // Quan hệ một-nhiều với ChiTietHD

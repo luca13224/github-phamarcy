@@ -6,7 +6,7 @@
 <div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-sm">
-            <h3 class="text-center text-uppercase fw-bold" style="color: black;">Cập nhật khách hàng</h3>
+            <h3 class="text-center text-uppercase fw-bold" style="color: #363636;"><strong>Cập nhật khách hàng</strong></h3>
             @if ($errors->any())
     <div class="alert alert-danger">
         <ul>

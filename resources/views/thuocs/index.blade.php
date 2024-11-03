@@ -22,13 +22,13 @@
 
             <form method="GET" action="{{ route('thuoc.index') }}">
             <div class="input-group">
-                    <input type="text" name="query" value="{{ request('query') }}" class="form-control" placeholder="Tìm kiếm khách hàng...">
+                    <input type="text" name="query" value="{{ request('query') }}" class="form-control" placeholder="Tìm kiếm thuốc...">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">Tìm kiếm</button>
                     </div>
                 </div>
             </form>
-            <table class="table">
+            <table class="table table-bordered text-center">
                 <thead>
                     <tr>
                         <th>Mã</th>

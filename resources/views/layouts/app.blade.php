@@ -16,11 +16,20 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-body {
-	color: #667a72;
-	background: #f5f5f5;
-	font-family: 'Varela Round', sans-serif;
-	font-size: 13px;
+html, body {
+            height: 100%; /* Đảm bảo html và body có chiều cao 100% */
+            margin: 0; /* Xóa margin mặc định */
+            padding: 0; /* Xóa padding mặc định */
+            color: #667a72;
+            background: #f5f5f5;
+            font-family: 'Varela Round', sans-serif;
+            font-size: 13px;
+}
+.container {
+            max-width: 2000px; /* Giới hạn chiều rộng tối đa */
+            width: 100%; /* Chiều rộng 100% */
+            padding: 0; /* Xóa padding */
+            margin: 0 auto; /* Căn giữa nội dung */
 }
 .table-responsive {
     margin: 30px 0;
@@ -31,6 +40,7 @@ body {
 	border-radius: 3px;
 	min-width: 1000px;
 	box-shadow: 0 1px 1px rgba(0,0,0,.05);
+	width: 100%;
 }
 .table-title {        
 	padding-bottom: 15px;
@@ -253,6 +263,28 @@ table.table .avatar {
     padding: 0.25rem 1rem; /* Adjust padding for the items */
     font-size: 12px; /* Reduce font size */
 }
+.navbar {
+    padding: 10px 20px; /* Thêm padding cho navbar */
+}
+
+.navbar-nav {
+    margin-left: auto; /* Căn phải */
+}
+
+.navbar-nav .nav-item {
+    margin-left: 20px; /* Khoảng cách giữa các item */
+}
+
+.navbar-nav .nav-link {
+    padding: 10px 15px; /* Thêm padding cho từng link để tăng diện tích nhấn */
+    color: #667a72; /* Màu chữ */
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #e9ecef; /* Màu nền khi hover */
+    border-radius: 5px; /* Bo góc cho hiệu ứng hover */
+}
+
 </style>
 </head>
 <style>
@@ -296,7 +328,7 @@ table.table .avatar {
     </style>
 	<body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Pharmacy</a>
+        <a class="navbar-brand" href="#"><img src="{{ asset('image/p.avif') }}" alt="Logo" style="width: 40px; height: auto; margin-right: 10px;">Pharmacy</a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Trang chủ</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('thuoc.index') }}">Thuốc</a></li>
@@ -310,8 +342,9 @@ table.table .avatar {
                 Báo Cáo
             </a>
 			<div class="dropdown-menu p-3" aria-labelledby="navbarDropdown">
-    			<a class="dropdown-item p-2" href="{{ route('bao_cao.doanh_thu_hang_thang') }}">Doanh thu</a>
+    			<a class="dropdown-item p-2" href="{{ route('doanhthu.thongke') }}">Doanh thu</a>
 			</div>
+			</li>
         </ul>
     </nav>
     <div class="container">

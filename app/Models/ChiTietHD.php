@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class ChiTietHD extends Model
 {
     use HasFactory;
-    protected $fillable = ['ma_CTHD','ma_HD','ma_thuoc','so_luong'];
+    protected $table = 'ChiTietHD'; 
+    protected $primaryKey = 'ma_CTHD'; // Đặt khóa chính
+    public $incrementing = false; // Nếu ma_thuoc không phải là số tự tăng
+    public $timestamps = false;
+    
+    protected $fillable = ['ma_HD','ma_thuoc','so_luong'];
     
     public function hoadon()
     {
@@ -16,6 +21,7 @@ class ChiTietHD extends Model
     }
     public function thuoc()
     {
-        return $this->belongsTo(thuoc::class);
+        return $this->belongsTo(Thuoc::class, 'ma_Thuoc', 'ma_thuoc'); // Đảm bảo khóa ngoại đúng
     }
+
 }

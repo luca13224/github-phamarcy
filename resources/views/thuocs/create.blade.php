@@ -7,7 +7,7 @@
 <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-sm">
-                <h3 class="text-center text-uppercase fw-bold" style="color: black;">Thêm thuốc mới</h3>
+                <h3 class="text-center text-uppercase fw-bold" style="color: #363636;"><strong>Thêm thuốc mới</strong></h3>
                 <form action="{{ route('thuoc.store') }}" method="POST">
                 @csrf
                     <div class="input-group mt-3 mb-3">
