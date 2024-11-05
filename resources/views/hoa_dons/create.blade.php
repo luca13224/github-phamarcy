@@ -45,7 +45,7 @@
             <button type="button" class="btn btn-success mt-2" onclick="addChiTiet()">Thêm thuốc</button>
         </div>
         <div class="input-group mt-3 mb-3">
-            <label for="diem_doi" class="input-group-text">Điểm Đổi:</labe>
+            <label for="diem_doi" class="input-group-text">Điểm Đổi:</label>
             <input type="number" name="diem_doi" class="form-control" min="0" placeholder="Nhập điểm muốn đổi">
         </div>
         <div class="input-group mt-3 mb-3">
@@ -56,19 +56,19 @@
 
     <script>
     function addChiTiet() {
-    const index = document.querySelectorAll('#chiTietHD .row').length;
-    const newRow = `
-        <div class="row">
-            <div class="col">
-                <input type="number" name="chiTietHD[${index}][ma_Thuoc]" placeholder="Mã Thuốc" class="form-control" required>
+        const index = document.querySelectorAll('#chiTietHD .row').length;
+        const newRow = `
+            <div class="row">
+                <div class="col">
+                    <input type="number" name="chiTietHD[${index}][ma_Thuoc]" placeholder="Mã Thuốc" class="form-control" required>
+                </div>
+                <div class="col">
+                    <input type="number" name="chiTietHD[${index}][so_luong]" placeholder="Số Lượng" class="form-control" required>
+                </div>
             </div>
-            <div class="col">
-                <input type="number" name="chiTietHD[${index}][so_luong]" placeholder="Số Lượng" class="form-control" required>
-            </div>
-        </div>
-    `;
-    document.getElementById('chiTietHD').insertAdjacentHTML('beforeend', newRow);
-}
+        `;
+        document.getElementById('chiTietHD').insertAdjacentHTML('beforeend', newRow);
+    }
     </script>
 </div>
 @endsection

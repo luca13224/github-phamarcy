@@ -9,14 +9,13 @@ class nhacungcap extends Model
 {
     use HasFactory;
     protected $table = 'nhacungcap';
-    protected $primaryKey = 'ma_NCC'; // Đặt khóa chính
-    public $incrementing = false; // Nếu ma_thuoc không phải là số tự tăng
+    protected $primaryKey = 'ma_NCC'; // Set the primary key
+    public $incrementing = false; // If ma_NCC is not auto-incrementing
     public $timestamps = false;
-
     protected $fillable = ['ma_NCC','ten_NCC','SDT','dia_chi'];
+
     public function thuocs()
     {
-        \Log::info('Calling thuocs relationship');
-        return $this->belongsToMany(thuoc::class, 'ncc_thuoc', 'ma_ncc', 'ma_thuoc');
+        return $this->belongsToMany(thuoc::class, 'ncc_thuoc', 'ma_NCC', 'ma_thuoc');
     }
 }

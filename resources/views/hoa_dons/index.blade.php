@@ -9,7 +9,7 @@
                     <div class="col-sm-6 text-left">
                         <h2><b>Quản lý hóa đơn</b></h2>
                     </div>
-                    
+
                     <div class="col-sm-6 text-right">
                         <a href="{{ route('hoa-dons.create') }}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Thêm hóa đơn mới</span></a>
                     </div>
@@ -49,7 +49,7 @@
                             <td>{{ $hd->nhanVien->ma_NV ?? 'N/A' }}</td>
                             <td>{{ $hd->khachHang->ma_KH ?? 'N/A' }}</td>
                             <td>{{ $hd->ngay_tao }}</td>
-                            <td>{{ number_format($hd->tong_tien, 2) }}</td>
+                            <td>{{ number_format($hd->tong_tien, 0, ',', '.') }} VND</td> <!-- Hiển thị tong_tien -->
                             <td>
                                 <a href="{{ route('hoa_don.show', $hd->ma_HD) }}">Xem Chi Tiết</a>
                             </td>
@@ -69,7 +69,6 @@
                 {{ $hoaDons->links('pagination::bootstrap-4') }}
             </div>
 
-            
         </div>
     </div>
 </div>

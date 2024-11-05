@@ -11,7 +11,7 @@ class hoadon extends Model
     protected $table = 'HoaDon'; // Đảm bảo tên bảng chính xác
     protected $primaryKey = 'ma_HD'; // Khóa chính
     public $timestamps = false; // Nếu bảng không có timestamps
-    protected $fillable = ['ma_NV', 'ma_KH', 'ngay_tao']; // Các trường có thể điền
+    protected $fillable = ['ma_NV', 'ma_KH', 'ngay_tao', 'tong_tien']; // Các trường có thể điền
     public function chiTietHD()
     {
         return $this->hasMany(ChiTietHD::class, 'ma_HD', 'ma_HD'); // Đảm bảo các tên cột chính xác

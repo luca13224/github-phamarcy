@@ -2,15 +2,15 @@
 
 @section('content')
 <div class="container-xl">
-	<div class="table-responsive">
-		<div class="table-wrapper">
-			<div class="table-title">
-				<div class="row">
-					<div class="col-sm-6 text-left">
-						<h2><b>Chi tiết hóa đơn</b></h2>
-					</div>
-				</div>
-			</div>
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6 text-left">
+                        <h2><b>Chi tiết hóa đơn</b></h2>
+                    </div>
+                </div>
+            </div>
             <table class="table table-bordered text-center">
                 <thead>
                     <tr>

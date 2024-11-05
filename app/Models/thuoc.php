@@ -13,9 +13,9 @@ class thuoc extends Model
     public $incrementing = false; // Nếu ma_thuoc không phải là số tự tăng
     public $timestamps = false;
     protected $fillable = ['ma_thuoc','ten_thuoc','thuong_hieu','lieu_luong','so_luong_ton','gia_nhap','gia_ban','HSD'];
-    public function nhacungcaps()
+    public function nhacungcap()
     {
-        return $this->belongsToMany(NhaCungCap::class, 'ncc_thuoc', 'ma_thuoc', 'ma_ncc');
+        return $this->belongsToMany(NhaCungCap::class, 'ncc_thuoc', 'ma_thuoc', 'ma_NCC');
     }
 
     // Quan hệ một-nhiều với ChiTietHD
