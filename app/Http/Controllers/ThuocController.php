@@ -3,43 +3,36 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\thuoc;
+use App\Models\Thuoc;
+use Illuminate\Support\Facades\DB;
 
 class ThuocController
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
-{
-    $query = $request->input('query');
-    $thuocsQuery = thuoc::with('nhacungcap');
+    {
+        $query = $request->input('query');
+        $thuocsQuery = Thuoc::with('nhacungcap');
 
-    if ($query) {
-        $thuocs = thuoc::where('ten_thuoc', 'LIKE', "%{$query}%")
-            ->orWhere('lieu_luong', 'LIKE', "%{$query}%")
-            ->paginate(10);
-    } else {
-        $thuocs = thuoc::paginate(10);
+        if ($query) {
+            $thuocs = Thuoc::where('ten_thuoc', 'LIKE', "%{$query}%")
+                ->orWhere('lieu_luong', 'LIKE', "%{$query}%")
+                ->paginate(10);
+        } else {
+            $thuocs = Thuoc::paginate(10);
+        }
+
+        return view('thuocs.index', compact('thuocs', 'query'));
     }
 
-    return view('thuocs.index', compact('thuocs', 'query'));
-}
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('thuocs.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
+            'ma_thuoc' => 'required|integer',
             'ten_thuoc' => 'required',
             'thuong_hieu' => 'required',
             'lieu_luong' => 'required',
@@ -49,36 +42,44 @@ class ThuocController
             'HSD' => 'required|date',
         ]);
 
-        thuoc::create($request->all());
+        // Kiểm tra xem ma_thuoc đã tồn tại chưa
+        $existingThuoc = Thuoc::where('ma_thuoc', $request->ma_thuoc)->first();
+        if ($existingThuoc) {
+            return redirect()->back()->withErrors(['error' => 'Mã thuốc đã tồn tại.']);
+        }
 
-        return redirect()->route('thuoc.index')->with('success', 'Thuốc đã được thêm thành công!');
+        try {
+            DB::statement('CALL ThemThuoc(?, ?, ?, ?, ?, ?, ?, ?)', [
+                $request->ma_thuoc,
+                $request->ten_thuoc,
+                $request->thuong_hieu,
+                $request->lieu_luong,
+                $request->so_luong_ton,
+                $request->gia_nhap,
+                $request->gia_ban,
+                $request->HSD
+            ]);
+
+            return redirect()->route('thuoc.index')->with('success', 'Thuốc đã được thêm thành công!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $ma_thuoc)
     {
-        $thuoc = thuoc::findOrFail($ma_thuoc);
+        $thuoc = Thuoc::findOrFail($ma_thuoc);
         return view('thuocs.show', compact('thuoc'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $thuoc = Thuoc::where('ma_thuoc', $id)->firstOrFail();
-
         return view('thuocs.edit', compact('thuoc'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        
         $request->validate([
             'ten_thuoc' => 'required',
             'thuong_hieu' => 'required',
@@ -95,15 +96,12 @@ class ThuocController
         return redirect()->route('thuoc.index')->with('success', 'Thuốc đã được cập nhật thành công!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $thuoc = Thuoc::where('ma_thuoc', $id)->firstOrFail();
         $thuoc->delete();
-    
+
         return redirect()->route('thuoc.index')->with('success', 'Thuốc đã được xóa');
     }
-        
 }
+
